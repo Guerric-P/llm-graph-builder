@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the backend Docker image
-      run: docker build backend --file Dockerfile --tag backend:main
+      run: docker build ./backend --file Dockerfile --tag backend:main
     - name: Build the frontend Docker image
-      run: docker build frontend --file Dockerfile --tag frontend:main
+      run: docker build ./frontend --file Dockerfile --tag frontend:main

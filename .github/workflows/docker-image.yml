@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the backend Docker image
-      run: docker build -f ./backend/Dockerfile -t backend:main ./backend
+      run: docker build -f ./backend/Dockerfile -t ghcr.io/Guerric-P/llm-graph-builder-backend:main ./backend && docker push ghcr.io/Guerric-P/llm-graph-builder-backend:main
     - name: Build the frontend Docker image
-      run: docker build -f ./frontend/Dockerfile -t backend:main ./frontend
+      run: docker build -f ./frontend/Dockerfile -t ghcr.io/Guerric-P/llm-graph-builder-frontend:main ./frontend && docker push ghcr.io/Guerric-P/llm-graph-builder-frontend:main

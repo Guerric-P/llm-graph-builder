@@ -1,7 +1,7 @@
 # Step 1: Build the React application
 FROM node:20 AS build
 
-ARG VITE_BACKEND_API_URL="https://clarifai-demo.francecentral.azurecontainer.io:5000"
+ARG VITE_BACKEND_API_URL="http://clarifai-app-gateway.francecentral.cloudapp.azure.com/backend"
 ARG VITE_REACT_APP_SOURCES=""
 ARG VITE_LLM_MODELS=""
 ARG VITE_GOOGLE_CLIENT_ID=""
@@ -15,7 +15,7 @@ ARG VITE_BATCH_SIZE=2
 ARG VITE_LLM_MODELS_PROD="openai_gpt_4o,openai_gpt_4o_mini,diffbot,gemini_1.5_flash"
 ARG VITE_AUTH0_CLIENT_ID=""
 ARG VITE_AUTH0_DOMAIN=""
-ARG VITE_SKIP_AUTH="false"
+ARG VITE_SKIP_AUTH="true"
 
 WORKDIR /app
 COPY package.json yarn.lock ./

@@ -14,6 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the backend Docker image
       run: docker build -f ./backend/Dockerfile -t ghcr.io/guerric-p/llm-graph-builder-backend:main ./backend && docker push ghcr.io/guerric-p/llm-graph-builder-backend:main
     - name: Build the frontend Docker image

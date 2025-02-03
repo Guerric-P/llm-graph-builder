@@ -2,8 +2,8 @@
 FROM node:20 AS build
 
 ARG VITE_BACKEND_API_URL="http://clarifai-app-gateway.francecentral.cloudapp.azure.com/backend"
-ARG VITE_REACT_APP_SOURCES=""
-ARG VITE_LLM_MODELS=""
+ARG VITE_REACT_APP_SOURCES="local,wiki,web"
+ARG VITE_LLM_MODELS="azure_ai_gpt_4o,iaka_llama3"
 ARG VITE_GOOGLE_CLIENT_ID=""
 ARG VITE_BLOOM_URL="https://workspace-preview.neo4j.io/workspace/explore?connectURL={CONNECT_URL}&search=Show+me+a+graph&featureGenAISuggestions=true&featureGenAISuggestionsInternal=true"
 ARG VITE_TIME_PER_PAGE=50
@@ -12,7 +12,8 @@ ARG VITE_CHUNK_SIZE=5242880
 ARG VITE_CHAT_MODES=""
 ARG VITE_ENV="DEV"
 ARG VITE_BATCH_SIZE=2
-ARG VITE_LLM_MODELS_PROD="openai_gpt_4o,openai_gpt_4o_mini,diffbot,gemini_1.5_flash"
+ARG VITE_LLM_MODELS_PROD="azure_ai_gpt_4o,iaka_llama3"
+ARG VITE_LLM_MODELS_DEV="azure_ai_gpt_4o,iaka_llama3"
 ARG VITE_AUTH0_CLIENT_ID=""
 ARG VITE_AUTH0_DOMAIN=""
 ARG VITE_SKIP_AUTH="true"
@@ -36,6 +37,7 @@ RUN VITE_BACKEND_API_URL=$VITE_BACKEND_API_URL \
     VITE_AUTH0_CLIENT_ID=$VITE_AUTH0_CLIENT_ID \
     VITE_AUTH0_DOMAIN=$VITE_AUTH0_DOMAIN \
     VITE_SKIP_AUTH=$VITE_SKIP_AUTH \
+    VITE_LLM_MODELS_DEV=$VITE_LLM_MODELS_DEV \
     yarn run build
 
 # Step 2: Serve the application using Nginx

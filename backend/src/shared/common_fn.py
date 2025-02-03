@@ -78,16 +78,17 @@ def load_embedding_model(embedding_model_name: str):
         )
         dimension = 768
         logging.info(f"Embedding: Using Vertex AI Embeddings , Dimension:{dimension}")
-    elif embedding_model_name == "titan":
-        embeddings = get_bedrock_embeddings()
+    elif embedding_model_name == "azure":
+        embeddings = AzureOpenAIEmbeddings(
+        )
         dimension = 1536
-        logging.info(f"Embedding: Using bedrock titan Embeddings , Dimension:{dimension}")
+        logging.info(f"Embedding: Using Azure Embeddings , Dimension:{dimension}")
     else:
-        embeddings = HuggingFaceEmbeddings(
+        embeddings = SentenceTransformerEmbeddings(
             model_name="all-MiniLM-L6-v2"#, cache_folder="/embedding_model"
         )
         dimension = 384
-        logging.info(f"Embedding: Using Langchain HuggingFaceEmbeddings , Dimension:{dimension}")
+        logging.info(f"Embedding: Using SentenceTransformer , Dimension:{dimension}")
     return embeddings, dimension
 
 def save_graphDocuments_in_neo4j(graph:Neo4jGraph, graph_document_list:List[GraphDocument]):

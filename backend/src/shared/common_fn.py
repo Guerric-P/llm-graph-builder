@@ -2,6 +2,7 @@ import hashlib
 import logging
 from src.document_sources.youtube import create_youtube_url
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_azure import AzureOpenAIEmbeddings
 from langchain_google_vertexai import VertexAIEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_neo4j import Neo4jGraph
@@ -12,7 +13,7 @@ import os
 from pathlib import Path
 from urllib.parse import urlparse
 import boto3
-from langchain_community.embeddings import BedrockEmbeddings
+from langchain_community.embeddings import BedrockEmbeddings, SentenceTransformerEmbeddings
 
 def check_url_source(source_type, yt_url:str=None, wiki_query:str=None):
     language=''

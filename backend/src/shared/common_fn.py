@@ -2,9 +2,8 @@ import hashlib
 import logging
 from src.document_sources.youtube import create_youtube_url
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_azure import AzureOpenAIEmbeddings
 from langchain_google_vertexai import VertexAIEmbeddings
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from langchain_neo4j import Neo4jGraph
 from langchain_community.graphs.graph_document import GraphDocument
 from typing import List
